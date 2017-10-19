@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QuotationSystem.Models;
+using System.Web.Security;
+using Newtonsoft.Json;
 
 namespace QuotationSystem.Controllers
 {
@@ -14,7 +16,13 @@ namespace QuotationSystem.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            List<Employee> model = new List<Employee>();
+            if (db.Employees.Count() > 0)
+            {
+                model = db.Employees.ToList();
+            }
+
+            return View(model);
         }
 
         public ActionResult Register()
@@ -29,6 +37,11 @@ namespace QuotationSystem.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 用户注册
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Register(FormCollection collection)
         {
@@ -64,6 +77,41 @@ namespace QuotationSystem.Controllers
         public ActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(EmployeeLoginViewModel emp)
+        {
+            if (ModelState.IsValid)
+            {
+                //判断是否登录成功
+                if (db.Employees.Count(p=>p.Account==emp.Account&&p.Password==emp.Password) == 1)
+                {
+                    SetCookie(emp);
+
+                    ContentResult content = new ContentResult();
+                    content.Content = "<script type='text/javascript'>alert('OK')</script>";
+                    return content;
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        private void SetCookie(EmployeeLoginViewModel emp)
+        {
+            //序列化用户信息
+            string empData = JsonConvert.SerializeObject(emp);
+
+            //保存用户身份信息
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, emp.Account, DateTime.Now, 
+                DateTime.Now.AddHours(12), false, empData);
+            //加密身份信息，保存至Cookie
+            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
+            Response.Cookies.Add(cookie);
+            
+            
+            
         }
     }
 }
