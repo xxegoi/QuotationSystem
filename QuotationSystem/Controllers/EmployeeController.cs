@@ -6,14 +6,17 @@ using System.Web.Mvc;
 using QuotationSystem.Models;
 using System.Web.Security;
 using Newtonsoft.Json;
+using QuotationSystem.Common;
 
 namespace QuotationSystem.Controllers
 {
+    
     public class EmployeeController : Controller
     {
         QSDbContext db = new QSDbContext();
 
         // GET: Employee
+        [UserFilter]
         public ActionResult Index()
         {
             List<Employee> model = new List<Employee>();
@@ -25,6 +28,7 @@ namespace QuotationSystem.Controllers
             return View(model);
         }
 
+        
         public ActionResult Register()
         {
             var model = new EmployeeRegViewModel();
@@ -74,6 +78,7 @@ namespace QuotationSystem.Controllers
             return RedirectToAction("Index");
         }
 
+        
         public ActionResult Login()
         {
             return View();
@@ -87,31 +92,44 @@ namespace QuotationSystem.Controllers
                 //判断是否登录成功
                 if (db.Employees.Count(p=>p.Account==emp.Account&&p.Password==emp.Password) == 1)
                 {
-                    SetCookie(emp);
 
-                    ContentResult content = new ContentResult();
-                    content.Content = "<script type='text/javascript'>alert('OK')</script>";
-                    return content;
+                    Session["User"] = emp.Account;
+                    var userType = (from user in db.Employees
+                                    where user.Account == emp.Account
+                                    select user.Department.Name).First();
+
+                    Session["UserType"] = userType;
+
+                    var cookie= SetCookie(emp.Account, userType.ToString());
+
+                    Response.Cookies.Add(cookie);
+
+                    var userloghis = new UserLogHis { Account=emp.Account,Cookie=cookie.Value,LoginTime=DateTime.Now };
+                    db.UserLoginHistory.Add(userloghis);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
                 }
             }
 
-            return RedirectToAction("Index");
+            return Redirect("/Employee/login");
         }
 
-        private void SetCookie(EmployeeLoginViewModel emp)
+        private HttpCookie SetCookie(string Account,string userType)
         {
+            var userData = new { Account, userType };
             //序列化用户信息
-            string empData = JsonConvert.SerializeObject(emp);
+            string empData = JsonConvert.SerializeObject(userData);
 
             //保存用户身份信息
-            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, emp.Account, DateTime.Now, 
-                DateTime.Now.AddHours(12), false, empData);
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, userData.Account, DateTime.Now, 
+                DateTime.Now.AddHours(1), false, empData);
+            
             //加密身份信息，保存至Cookie
             HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
-            Response.Cookies.Add(cookie);
-            
-            
-            
+
+            return cookie;
+
         }
     }
 }

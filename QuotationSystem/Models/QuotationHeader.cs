@@ -17,7 +17,7 @@ namespace QuotationSystem.Models
         [Required]
         public Employee Sales { get; set; }
 
-        [Required]
+        [Required] 
         public Employee Buyer { get; set; }
 
         [Display(Name ="报价日期")]
@@ -25,7 +25,10 @@ namespace QuotationSystem.Models
         [Required]
         public DateTime QDate { get; set; }
 
-        public Employee Emp { get; set; }
+        [Required]
+        [Display(Name ="汇率")]
+        public decimal ExchangeRate { get; set; }
+
         [Display(Name ="FOB费")]
         [Required]
         public decimal Fob { get; set; }
@@ -54,12 +57,15 @@ namespace QuotationSystem.Models
     /// <summary>
     /// 业务员视图模型
     /// </summary>
-    public class QuotationHeaderSalesViewModel: QuotationHeaderBuyerViewModel
+    public class QuotationHeaderSalesViewModel: QuotationHeaderBaseViewModel
     {
-        public Employee Emp { get; set; }
         [Display(Name = "FOB费")]
         [Required]
         public decimal Fob { get; set; }
+
+        [Required]
+        [Display(Name = "汇率")]
+        public decimal ExchangeRate { get; set; }
 
         [Required]
         [Display(Name = "海运费")]
@@ -78,7 +84,13 @@ namespace QuotationSystem.Models
     /// <summary>
     /// 采购员界面视图模型
     /// </summary>
-    public class QuotationHeaderBuyerViewModel
+    public class QuotaitonHeaderBuyViewModel:QuotationHeaderBaseViewModel
+    {
+
+    }
+
+    
+    public class QuotationHeaderBaseViewModel
     {
         public int Id { get; set; }
 
@@ -105,5 +117,6 @@ namespace QuotationSystem.Models
         [Display(Name = "采购备注")]
         [MaxLength(200)]
         public string PurchaseMemo { get; set; }
+
     }
 }

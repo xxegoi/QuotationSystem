@@ -13,6 +13,8 @@ namespace QuotationSystem.Models
         
         public QuotationHeader Header { get; set; }
 
+        public ProductClass Class { get; set; }
+
         public string Metal { get; set; }
 
         public string Shape { get; set; }
@@ -25,6 +27,8 @@ namespace QuotationSystem.Models
 
         public decimal CommissionCost { get; set; }
 
+        public decimal Profit { get; set; }
+
         public decimal PurchasePrice { get; set; }
 
         public decimal SalesPrice { get; set; }
@@ -32,22 +36,43 @@ namespace QuotationSystem.Models
         public string Memo { get; set; }
     }
 
-    public class QuotationDetailSalesViewModel:QuotationDetailBuyerViewModel
+    public class QuotationDetailSalesViewModel: QuotationDetailBaseViewModel
     {
         [Required]
-        [Display(Name = "销售报价")]
-        public decimal SalesPrice { get; set; }
+        [Display(Name = "销售报价(美元)")]
+        public decimal SalesPrice
+        {
+            get
+            {
+                //成本价=采购报价/汇率+利润
+                var result = this.Profit + (this.PurchasePrice / this.Header.ExchangeRate);
+                //销售价=成本价+FOB+海运费+其它费用
+                result += this.Header.Fob + this.Header.SeaCost + this.Header.Other;
+                return result;
+            }
+        }
+
 
         [Required]
         [Display(Name = "暗佣")]
         public decimal CommissionCost { get; set; }
     }
 
-    public class QuotationDetailBuyerViewModel
+    public class QuotationDetailBuyViewModel : QuotationDetailBaseViewModel
+    {
+
+    }
+
+    public class QuotationDetailBaseViewModel
     {
         public int Id { get; set; }
         [Required]
-        public QuotationHeader Header { get; set; }
+        public QuotationHeaderSalesViewModel Header { get; set; }
+
+        [Display(Name ="商品大类")]
+        [Required]
+        public ProductClass ProductClass { get; set; }
+
         [Display(Name = "材质")]
         [Required]
         [MaxLength(30)]
@@ -67,6 +92,10 @@ namespace QuotationSystem.Models
         [MaxLength(30)]
         [Display(Name = "工序")]
         public string Technology { get; set; }
+
+        [Display(Name ="利润(美元)")]
+        [Required]
+        public decimal Profit { get; set; }
 
         [Required]
         [Display(Name = "数量")]

@@ -7,7 +7,7 @@ namespace QuotationSystem.Models
 {
     public class BuyerQuotationViewModel
     {
-        public QuotationHeaderBuyerViewModel Header { get; set; }
-        public List<QuotationDetailBuyerViewModel> Details { get; set; }
+        public QuotaitonHeaderBuyViewModel Header { get; set; }
+        public List<QuotationDetailBuyViewModel> Details { get; set; }
     }
 }

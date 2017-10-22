@@ -12,6 +12,9 @@ namespace QuotationSystem.Models
         
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
-
+        public DbSet<UserLogHis> UserLoginHistory { get; set; }
+        public DbSet<ProductClass> ProductClasses { get; set; }
+        public DbSet<QuotationHeader> QHeaders { get; set; }
+        public DbSet<QuotationDetail> QDetails { get; set; }
     }
 }

@@ -166,25 +166,33 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Common\UserFilterAttribute.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductClassesController.cs" />
     <Compile Include="Controllers\QuotationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710190705377_addmodel.cs" />
-    <Compile Include="Migrations\201710190705377_addmodel.Designer.cs">
-      <DependentUpon>201710190705377_addmodel.cs</DependentUpon>
+    <Compile Include="Migrations\201710211445437_AddUserLoginHisModel.cs" />
+    <Compile Include="Migrations\201710211445437_AddUserLoginHisModel.Designer.cs">
+      <DependentUpon>201710211445437_AddUserLoginHisModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710220341354_Add_ProductClass.cs" />
+    <Compile Include="Migrations\201710220341354_Add_ProductClass.Designer.cs">
+      <DependentUpon>201710220341354_Add_ProductClass.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BuyerQuotationViewModel.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\ProductClass.cs" />
     <Compile Include="Models\QSDbContext.cs" />
     <Compile Include="Models\QuotationDetail.cs" />
     <Compile Include="Models\QuotationHeader.cs" />
     <Compile Include="Models\SalesQuotationViewModel.cs" />
+    <Compile Include="Models\UserLogHis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -233,9 +241,15 @@
     <Content Include="Views\Departments\Index.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Login.cshtml" />
+    <Content Include="Views\ProductClasses\Create.cshtml" />
+    <Content Include="Views\ProductClasses\Delete.cshtml" />
+    <Content Include="Views\ProductClasses\Details.cshtml" />
+    <Content Include="Views\ProductClasses\Edit.cshtml" />
+    <Content Include="Views\ProductClasses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ProductProfit\" />
     <Folder Include="Views\Quotation\" />
   </ItemGroup>
   <ItemGroup>
@@ -247,8 +261,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710190705377_addmodel.resx">
-      <DependentUpon>201710190705377_addmodel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710211445437_AddUserLoginHisModel.resx">
+      <DependentUpon>201710211445437_AddUserLoginHisModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710220341354_Add_ProductClass.resx">
+      <DependentUpon>201710220341354_Add_ProductClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

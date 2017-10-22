@@ -7,13 +7,13 @@ namespace QuotationSystem.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addmodel : IMigrationMetadata
+    public sealed partial class AddUserLoginHisModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addmodel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddUserLoginHisModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710190705377_addmodel"; }
+            get { return "201710211445437_AddUserLoginHisModel"; }
         }
         
         string IMigrationMetadata.Source
