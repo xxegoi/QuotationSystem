@@ -183,8 +183,13 @@
     <Compile Include="Migrations\201710220341354_Add_ProductClass.Designer.cs">
       <DependentUpon>201710220341354_Add_ProductClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710231404317_ModifyModels.cs" />
+    <Compile Include="Migrations\201710231404317_ModifyModels.Designer.cs">
+      <DependentUpon>201710231404317_ModifyModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BuyerQuotationViewModel.cs" />
+    <Compile Include="Models\CommisionType.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ProductClass.cs" />
@@ -266,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710220341354_Add_ProductClass.resx">
       <DependentUpon>201710220341354_Add_ProductClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710231404317_ModifyModels.resx">
+      <DependentUpon>201710231404317_ModifyModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

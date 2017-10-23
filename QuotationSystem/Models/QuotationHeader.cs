@@ -12,7 +12,7 @@ namespace QuotationSystem.Models
         public int Id { get; set; }
 
         [Display(Name ="状态")]
-        public int Status { get; set; }
+        public QuotationStatus Status { get; set; }
 
         [Required]
         public Employee Sales { get; set; }
@@ -39,7 +39,9 @@ namespace QuotationSystem.Models
 
         [Required]
         [Display(Name ="暗佣类别")]
-        public int CommissionType { get; set; }
+        public CommisionType CommissionType { get; set; }
+
+        public decimal Commision { get; set; }
 
         [Required]
         [Display(Name ="其它费用")]
@@ -71,9 +73,16 @@ namespace QuotationSystem.Models
         [Display(Name = "海运费")]
         public decimal SeaCost { get; set; }
 
+        [Display(Name = "暗佣类别")]
+        public List<SelectListItem> SelectCommissionType { get; set; }
+
         [Required]
         [Display(Name = "暗佣类别")]
-        public int CommissionType { get; set; }
+        public CommisionType CommisionType { get; set; }
+
+        [Required]
+        [Display(Name ="暗佣")]
+        public decimal Commision { get; set; }
 
         [Required]
         [Display(Name = "其它费用")]
@@ -95,7 +104,7 @@ namespace QuotationSystem.Models
         public int Id { get; set; }
 
         [Display(Name = "状态")]
-        public int Status { get; set; }
+        public List<SelectListItem> Status { get; set; }
 
         [Required]
         [Display(Name ="业务员")]

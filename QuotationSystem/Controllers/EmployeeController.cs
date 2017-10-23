@@ -115,6 +115,15 @@ namespace QuotationSystem.Controllers
             return Redirect("/Employee/login");
         }
 
+        public ActionResult Logout()
+        {
+            Session["User"] = null;
+
+            Response.Cookies.Remove(FormsAuthentication.FormsCookieName);
+
+            return RedirectToAction("Login");
+        }
+
         private HttpCookie SetCookie(string Account,string userType)
         {
             var userData = new { Account, userType };

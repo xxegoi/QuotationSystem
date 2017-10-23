@@ -39,23 +39,15 @@ namespace QuotationSystem.Models
     public class QuotationDetailSalesViewModel: QuotationDetailBaseViewModel
     {
         [Required]
+        public QuotationHeaderSalesViewModel Header { get; set; }
+
+        [Required]
         [Display(Name = "销售报价(美元)")]
         public decimal SalesPrice
         {
-            get
-            {
-                //成本价=采购报价/汇率+利润
-                var result = this.Profit + (this.PurchasePrice / this.Header.ExchangeRate);
-                //销售价=成本价+FOB+海运费+其它费用
-                result += this.Header.Fob + this.Header.SeaCost + this.Header.Other;
-                return result;
-            }
+            get;set;
         }
 
-
-        [Required]
-        [Display(Name = "暗佣")]
-        public decimal CommissionCost { get; set; }
     }
 
     public class QuotationDetailBuyViewModel : QuotationDetailBaseViewModel
@@ -66,8 +58,7 @@ namespace QuotationSystem.Models
     public class QuotationDetailBaseViewModel
     {
         public int Id { get; set; }
-        [Required]
-        public QuotationHeaderSalesViewModel Header { get; set; }
+        
 
         [Display(Name ="商品大类")]
         [Required]
@@ -92,10 +83,6 @@ namespace QuotationSystem.Models
         [MaxLength(30)]
         [Display(Name = "工序")]
         public string Technology { get; set; }
-
-        [Display(Name ="利润(美元)")]
-        [Required]
-        public decimal Profit { get; set; }
 
         [Required]
         [Display(Name = "数量")]

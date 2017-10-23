@@ -45,7 +45,7 @@ namespace QuotationSystem.Controllers
             return View();
         }
 
-        public ActionResult BuyIndex()
+        public ActionResult BuyIndex(int page=1)
         {
             return View();
         }
