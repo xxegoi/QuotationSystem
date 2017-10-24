@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201710231404317_ModifyModels.Designer.cs">
       <DependentUpon>201710231404317_ModifyModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710240933399_ModifyHeader.cs" />
+    <Compile Include="Migrations\201710240933399_ModifyHeader.Designer.cs">
+      <DependentUpon>201710240933399_ModifyHeader.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BuyerQuotationViewModel.cs" />
     <Compile Include="Models\CommisionType.cs" />
@@ -274,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710231404317_ModifyModels.resx">
       <DependentUpon>201710231404317_ModifyModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710240933399_ModifyHeader.resx">
+      <DependentUpon>201710240933399_ModifyHeader.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

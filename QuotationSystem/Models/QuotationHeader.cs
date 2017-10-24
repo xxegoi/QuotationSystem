@@ -104,7 +104,9 @@ namespace QuotationSystem.Models
         public int Id { get; set; }
 
         [Display(Name = "状态")]
-        public List<SelectListItem> Status { get; set; }
+        public List<SelectListItem> StatusList { get; set; }
+
+        public QuotationStatus Status { get; set; }
 
         [Required]
         [Display(Name ="业务员")]

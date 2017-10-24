@@ -38,11 +38,39 @@ namespace QuotationSystem.Controllers
             
         }
 
-        public ActionResult SalesIndex(int page=1)
+        public ActionResult SalesIndex(int page = 1, int size = 30)
         {
+            var headers = db.QHeaders.Skip(page - 1 * size).Take(size).Where(p => p.Sales.Account == Session["User"].ToString()).ToList();
 
+            List<QuotationHeaderSalesViewModel> models = new List<QuotationHeaderSalesViewModel>(); ;
 
-            return View();
+            if (headers.Count() > 0)
+            {
+
+                headers.ForEach(p =>
+                {
+                    QuotationHeaderSalesViewModel item = new QuotationHeaderSalesViewModel
+                    {
+                        Buyer = p.Buyer,
+                        Commision = p.Commision,
+                        Id = p.Id,
+                        CommisionType = p.CommissionType,
+                        ExchangeRate = p.ExchangeRate,
+                        Fob = p.Fob,
+                        Other = p.Other,
+                        PurchaseMemo = p.PurchaseMemo,
+                        QDate = p.QDate,
+                        Sales = p.Sales,
+                        SalesMemo = p.SalesMemo,
+                        SeaCost = p.SeaCost,
+                        Status = p.Status
+                    };
+
+                    models.Add(item);
+                });
+            }
+
+            return View(models);
         }
 
         public ActionResult BuyIndex(int page=1)
