@@ -7,13 +7,13 @@ namespace QuotationSystem.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ModifyHeader : IMigrationMetadata
+    public sealed partial class abc : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ModifyHeader));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(abc));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710240933399_ModifyHeader"; }
+            get { return "201710250335255_abc"; }
         }
         
         string IMigrationMetadata.Source

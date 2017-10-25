@@ -175,21 +175,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710211445437_AddUserLoginHisModel.cs" />
-    <Compile Include="Migrations\201710211445437_AddUserLoginHisModel.Designer.cs">
-      <DependentUpon>201710211445437_AddUserLoginHisModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710220341354_Add_ProductClass.cs" />
-    <Compile Include="Migrations\201710220341354_Add_ProductClass.Designer.cs">
-      <DependentUpon>201710220341354_Add_ProductClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710231404317_ModifyModels.cs" />
-    <Compile Include="Migrations\201710231404317_ModifyModels.Designer.cs">
-      <DependentUpon>201710231404317_ModifyModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710240933399_ModifyHeader.cs" />
-    <Compile Include="Migrations\201710240933399_ModifyHeader.Designer.cs">
-      <DependentUpon>201710240933399_ModifyHeader.cs</DependentUpon>
+    <Compile Include="Migrations\201710250335255_abc.cs" />
+    <Compile Include="Migrations\201710250335255_abc.Designer.cs">
+      <DependentUpon>201710250335255_abc.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BuyerQuotationViewModel.cs" />
@@ -255,11 +243,12 @@
     <Content Include="Views\ProductClasses\Details.cshtml" />
     <Content Include="Views\ProductClasses\Edit.cshtml" />
     <Content Include="Views\ProductClasses\Index.cshtml" />
+    <Content Include="Views\Quotation\SalesIndex.cshtml" />
+    <Content Include="Views\Quotation\CreateSaleQuotation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ProductProfit\" />
-    <Folder Include="Views\Quotation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -270,17 +259,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710211445437_AddUserLoginHisModel.resx">
-      <DependentUpon>201710211445437_AddUserLoginHisModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710220341354_Add_ProductClass.resx">
-      <DependentUpon>201710220341354_Add_ProductClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710231404317_ModifyModels.resx">
-      <DependentUpon>201710231404317_ModifyModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710240933399_ModifyHeader.resx">
-      <DependentUpon>201710240933399_ModifyHeader.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710250335255_abc.resx">
+      <DependentUpon>201710250335255_abc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

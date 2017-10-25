@@ -17,7 +17,14 @@ namespace QuotationSystem.Controllers
         // GET: Departments
         public ActionResult Index()
         {
-            return View(db.Departments.ToList());
+            List<Department> deparments = new List<Department>();
+
+            if (db.Departments.Count() > 0)
+            {
+                deparments = db.Departments.ToList();
+            }
+
+            return View(deparments);
         }
 
         // GET: Departments/Details/5

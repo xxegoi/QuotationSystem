@@ -9,7 +9,7 @@ namespace QuotationSystem.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(QuotationSystem.Models.QSDbContext context)

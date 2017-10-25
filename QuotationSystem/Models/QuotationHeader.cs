@@ -93,7 +93,7 @@ namespace QuotationSystem.Models
     /// <summary>
     /// 采购员界面视图模型
     /// </summary>
-    public class QuotaitonHeaderBuyViewModel:QuotationHeaderBaseViewModel
+    public class QuotationHeaderBuyViewModel:QuotationHeaderBaseViewModel
     {
 
     }
@@ -115,6 +115,9 @@ namespace QuotationSystem.Models
         [Required]
         [Display(Name ="采购员")]
         public Employee Buyer { get; set; }
+
+        [Display(Name = "采购员")]
+        public List<SelectListItem> BuyerList { get; set; }
 
         [Display(Name = "报价日期")]
         [DataType(DataType.Date)]

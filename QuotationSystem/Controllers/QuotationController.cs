@@ -14,7 +14,7 @@ namespace QuotationSystem.Controllers
     {
         QSDbContext db = new QSDbContext();
         // GET: Quotation
-        
+
         public ActionResult Index()
         {
             //根据用户所在部门显示数据
@@ -35,7 +35,7 @@ namespace QuotationSystem.Controllers
                         return Redirect("/Employee/login");
                     }
             }
-            
+
         }
 
         public ActionResult SalesIndex(int page = 1, int size = 30)
@@ -65,15 +65,47 @@ namespace QuotationSystem.Controllers
                         SeaCost = p.SeaCost,
                         Status = p.Status
                     };
-
                     models.Add(item);
+
                 });
             }
 
             return View(models);
         }
 
-        public ActionResult BuyIndex(int page=1)
+        public ActionResult CreateQuotation()
+        {
+            
+            SalesQuotationViewModel model = new SalesQuotationViewModel();
+            
+            model.Header.BuyerList = new List<SelectListItem>();
+
+            var buyers = (from buyer in db.Employees
+                          where buyer.Department.Name == "采购部"
+                          select buyer).ToList();
+
+            if (buyers.Count > 0)
+            {
+                buyers.ForEach(p =>
+                {
+                    model.Header.BuyerList.Add(new SelectListItem { Text = p.Name, Value = p.Id.ToString() });
+                });
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateQuotation(SalesQuotationViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            return View();
+        }
+
+        public ActionResult BuyIndex(int page = 1)
         {
             return View();
         }
