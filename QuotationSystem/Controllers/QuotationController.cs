@@ -9,7 +9,7 @@ using QuotationSystem.Common;
 
 namespace QuotationSystem.Controllers
 {
-    [UserFilter]
+    
     public class QuotationController : Controller
     {
         QSDbContext db = new QSDbContext();
@@ -78,21 +78,36 @@ namespace QuotationSystem.Controllers
             
             SalesQuotationViewModel model = new SalesQuotationViewModel();
             
-            model.Header.BuyerList = new List<SelectListItem>();
+            model.BuyerList = new List<SelectListItem>();
 
             var buyers = (from buyer in db.Employees
                           where buyer.Department.Name == "采购部"
                           select buyer).ToList();
-
+            //获取采购员列表
             if (buyers.Count > 0)
             {
                 buyers.ForEach(p =>
                 {
-                    model.Header.BuyerList.Add(new SelectListItem { Text = p.Name, Value = p.Id.ToString() });
+                    model.BuyerList.Add(new SelectListItem { Text = p.Name, Value = p.Id.ToString() });
                 });
             }
 
-            return View();
+            model.SelectClass = new List<SelectListItem>();
+            //获取产品类别列表
+            var classes = (from item in db.ProductClasses
+                           select item).ToList();
+
+            if (classes.Count > 0)
+            {
+                classes.ForEach(p =>
+                {
+                    model.SelectClass.Add(
+                        new SelectListItem { Text=p.Name,Value=p.Id.ToString()}
+                        );
+                });
+            }
+
+            return View(model);
         }
 
         [HttpPost]

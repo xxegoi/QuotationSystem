@@ -103,8 +103,7 @@ namespace QuotationSystem.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "状态")]
-        public List<SelectListItem> StatusList { get; set; }
+        
 
         public QuotationStatus Status { get; set; }
 
@@ -116,8 +115,7 @@ namespace QuotationSystem.Models
         [Display(Name ="采购员")]
         public Employee Buyer { get; set; }
 
-        [Display(Name = "采购员")]
-        public List<SelectListItem> BuyerList { get; set; }
+        
 
         [Display(Name = "报价日期")]
         [DataType(DataType.Date)]

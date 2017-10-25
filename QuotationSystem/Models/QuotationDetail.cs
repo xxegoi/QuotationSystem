@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace QuotationSystem.Models
 {
@@ -93,6 +94,6 @@ namespace QuotationSystem.Models
         public decimal PurchasePrice { get; set; }
 
         [Display(Name = "备注")]
-        public string Momo { get; set; }
+        public string Memo { get; set; }
     }
 }

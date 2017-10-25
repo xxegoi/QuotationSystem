@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuotationSystem.Models;
+using QuotationSystem.Common;
 
 namespace QuotationSystem.Controllers
 {
+    [UserFilter]
     public class DepartmentsController : Controller
     {
         private QSDbContext db = new QSDbContext();

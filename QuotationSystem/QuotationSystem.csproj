@@ -244,7 +244,7 @@
     <Content Include="Views\ProductClasses\Edit.cshtml" />
     <Content Include="Views\ProductClasses\Index.cshtml" />
     <Content Include="Views\Quotation\SalesIndex.cshtml" />
-    <Content Include="Views\Quotation\CreateSaleQuotation.cshtml" />
+    <Content Include="Views\Quotation\CreateQuotation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
