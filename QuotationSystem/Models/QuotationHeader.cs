@@ -73,9 +73,6 @@ namespace QuotationSystem.Models
         [Display(Name = "海运费")]
         public decimal SeaCost { get; set; }
 
-        [Display(Name = "暗佣类别")]
-        public List<SelectListItem> SelectCommissionType { get; set; }
-
         [Required]
         [Display(Name = "暗佣类别")]
         public CommisionType CommisionType { get; set; }
@@ -102,8 +99,6 @@ namespace QuotationSystem.Models
     public class QuotationHeaderBaseViewModel
     {
         public int Id { get; set; }
-
-        
 
         public QuotationStatus Status { get; set; }
 

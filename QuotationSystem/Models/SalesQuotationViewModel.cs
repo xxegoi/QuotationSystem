@@ -14,6 +14,7 @@ namespace QuotationSystem.Models
 
         public QuotationDetailSalesViewModel Detail { get; set; }
 
+        
         [Display(Name = "商品类别")]
         public List<SelectListItem> SelectClass { get; set; }
 
@@ -22,6 +23,9 @@ namespace QuotationSystem.Models
 
         [Display(Name = "采购员")]
         public List<SelectListItem> BuyerList { get; set; }
+
+        [Display(Name ="暗佣类别")]
+        public List<SelectListItem> CommisionList { get; set; }
 
         public SalesQuotationViewModel()
         {

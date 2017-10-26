@@ -59,11 +59,10 @@ namespace QuotationSystem.Models
     public class QuotationDetailBaseViewModel
     {
         public int Id { get; set; }
-        
 
         [Display(Name ="商品大类")]
         [Required]
-        public ProductClass ProductClass { get; set; }
+        public string ProductClass { get; set; }
 
         [Display(Name = "材质")]
         [Required]

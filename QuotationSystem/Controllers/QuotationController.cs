@@ -107,6 +107,10 @@ namespace QuotationSystem.Controllers
                 });
             }
 
+            //获取暗佣类别
+            model.CommisionList = new List<SelectListItem>() { new SelectListItem { Text = CommisionType.百份比.ToString(), Value = CommisionType.百份比.ToString() },
+            new SelectListItem { Text=CommisionType.金额.ToString(),Value=CommisionType.金额.ToString() } };
+
             return View(model);
         }
 
@@ -117,7 +121,7 @@ namespace QuotationSystem.Controllers
             {
 
             }
-            return View();
+            return View(model);
         }
 
         public ActionResult BuyIndex(int page = 1)
