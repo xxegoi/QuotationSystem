@@ -104,11 +104,11 @@ namespace QuotationSystem.Models
 
         [Required]
         [Display(Name ="业务员")]
-        public Employee Sales { get; set; }
+        public string Sales { get; set; }
 
         [Required]
         [Display(Name ="采购员")]
-        public Employee Buyer { get; set; }
+        public string Buyer { get; set; }
 
         
 

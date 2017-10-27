@@ -39,7 +39,6 @@ namespace QuotationSystem.Models
 
     public class QuotationDetailSalesViewModel: QuotationDetailBaseViewModel
     {
-        [Required]
         public QuotationHeaderSalesViewModel Header { get; set; }
 
         [Required]

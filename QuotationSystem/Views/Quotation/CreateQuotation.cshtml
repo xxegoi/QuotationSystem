@@ -1,10 +1,14 @@
 ﻿@model QuotationSystem.Models.SalesQuotationViewModel
 
+@if (ViewBag.ErrorMessage != null)
+{
+
+    <label class="text-danger">@ViewBag.ErrorMessage</label>
+}
+
 <link rel="stylesheet" href="~/Common/layui/css/layui.css" />
 <script src="~/Common/layui/layui.js"></script>
 <style type="text/css">
-    #QuotationDetails{
-    }
     #Div_Details{
         height:300px;
         overflow-y:scroll;
@@ -19,82 +23,94 @@
         <h4>SalesQuotationViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
         <div class="form-group">
-            @Html.LabelFor(Model => Model.BuyerList, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.HiddenFor(model => model.Sales)
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">采购员</label>
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.BuyerList, Model.BuyerList, "", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.BuyerList, "", htmlAttributes: new { @class = "text-danger" })
+                @if (ViewBag.BuyerList != null)
+                {
+                    <select class="form-control" name="Buyer">
+                        @foreach (var item in ViewBag.BuyerList)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                }
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Header.ExchangeRate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ExchangeRate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Header.ExchangeRate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Header.ExchangeRate, "", htmlAttributes: new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ExchangeRate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ExchangeRate, "", htmlAttributes: new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Header.Fob, htmlAttributes:new {@class="control-label col-md-2"})
+            @Html.LabelFor(model => model.Fob, htmlAttributes:new {@class="control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Header.Fob,new {htmlAttributes=new {@class="form-control" } })
-                @Html.ValidationMessageFor(model => model.Header.Fob, "", htmlAttributes:new {@class="text-danger"})
+                @Html.EditorFor(model => model.Fob,new {htmlAttributes=new {@class="form-control" } })
+                @Html.ValidationMessageFor(model => model.Fob, "", htmlAttributes:new {@class="text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Header.SeaCost, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SeaCost, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Header.SeaCost, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Header.SeaCost, "", htmlAttributes: new { @class = "text-danger" })
+                @Html.EditorFor(model => model.SeaCost, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SeaCost, "", htmlAttributes: new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CommisionList, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">暗佣类别</label>
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CommisionList,Model.CommisionList,  htmlAttributes :new { @class = "form-control" } )
+                @if (ViewBag.CommisionList != null)
+                {
+                    <select class="form-control">
+                        @foreach (var item in ViewBag.CommisionList)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                }
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Header.Commision, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Commision, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Header.Commision, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Header.Commision, "", htmlAttributes: new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Commision, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Commision, "", htmlAttributes: new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Header.Commision, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Other, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Header.Commision, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Header.Commision, "", htmlAttributes: new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Other, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Other, "", htmlAttributes: new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Header.Other, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SalesMemo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Header.Other, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Header.Other, "", htmlAttributes: new { @class = "text-danger" })
+                @Html.EditorFor(model => model.SalesMemo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SalesMemo, "", htmlAttributes: new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Header.SalesMemo, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PurchaseMemo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Header.SalesMemo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Header.SalesMemo, "", htmlAttributes: new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Header.PurchaseMemo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Header.PurchaseMemo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Header.PurchaseMemo, "", htmlAttributes: new { @class = "text-danger" })
+                @Html.EditorFor(model => model.PurchaseMemo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PurchaseMemo, "", htmlAttributes: new { @class = "text-danger" })
             </div>
         </div>
 
@@ -103,28 +119,28 @@
             <table id="QuotationDetails" class="table" name="Details">
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.Detail.ProductClass)
+                           商品大类
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Detail.Metal)
+                           材质
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Detail.Shape)
+                            形态
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Detail.Model)
+                           规格
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Detail.Technology)
+                            工艺
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Detail.Qty)
+                            数量
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Detail.SalesPrice)
+                            销售价(美元)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Detail.Memo)
+                            备注
                         </th>
                     </tr>
                     @if (Model.Details.Count>0)
@@ -159,36 +175,6 @@
                             </tr>
                         }
                     }
-                    else
-                    {
-                        <tr>
-                            <td>
-                                <input type="text" name="Details[0].ProductClass" readonly="readonly" class="form-control" />
-                            </td>
-                            <td>
-                                <input type="text" name="Details[0].Metal" readonly="readonly" class="form-control" />
-                            </td>
-                            <td>
-                                <input type="text" name="Details[0].Shape" readonly="readonly" class="form-control" />
-                            </td>
-                            <td>
-                                <input type="text" name="Details[0].Model" readonly="readonly" class="form-control" />
-                            </td>
-                            <td>
-                                <input type="text" name="Details[0].Technology" readonly="readonly" class="form-control" />
-                            </td>
-                            <td>
-                                <input type="text" name="Details[0].Qty" readonly="readonly" class="form-control" />
-                            </td>
-                            <td>
-                                <input type="text" name="Details[0].SalesPrice" readonly="readonly" class="form-control" />
-                            </td>
-                            <td>
-                                <input type="text" name="Details[0].Memo" readonly="readonly" class="form-control" />
-                            </td>
-                        </tr>
-                    }
-
             </table>
 
 
@@ -197,47 +183,57 @@
 
         <div id="AddDetail">
             <div class="form-group">
-                @Html.LabelFor(model => model.SelectClass, new { @class = "control-label col-md-2" })
+                <label class="control-label col-md-2">商品大类</label>
                 <div class="col-md-4">
-                    @Html.DropDownListFor(model => model.SelectClass, Model.SelectClass, new { @class = "form-control" })
+                    @if (ViewBag.SelectClass != null)
+                    {
+                        <select id="SelectClass" class="form-control">
+                            @foreach(var item in ViewBag.SelectClass)
+                            {
+                                <option value="@item.Id">
+                                    @item.Name
+                                </option>
+                            }
+                        </select>
+                    }
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Detail.Metal, new { @class = "control-label col-md-2" })
+                <label class="control-label col-md-2">材质</label>
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.Detail.Metal, new { htmlAttributes = new { @class = "form-control" } })
+                    <input id="Detail_Metail" type="text" class="form-control"/>
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Detail.Shape, new { @class = "control-label col-md-2" })
+                <label class="control-label col-md-2">形态</label>
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.Detail.Shape, new { htmlAttributes = new { @class = "form-control" } })
+                    <input id="Detail_Shape" type="text" class="form-control"/>
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Detail.Model, new { @class = "control-label col-md-2" })
+                <label class="control-label col-md-2">规格</label>
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.Detail.Model, new { htmlAttributes = new { @class = "form-control" } })
+                    <input id="Detail_Model" type="text" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Detail.Technology, new { @class = "control-label col-md-2" })
+                <label class="control-label col-md-2">工艺</label>
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.Detail.Technology, new { htmlAttributes = new { @class = "form-control" } })
+                    <input id="Detail_Technology" type="text" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Detail.Qty, new { @class = "control-label col-md-2" })
+                <label class="control-label col-md-2">数量</label>
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.Detail.Qty, new { htmlAttributes = new { @class = "form-control" } })
+                    <input id="Detail_Qty" type="text" class="form-control" />
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Detail.Memo, new { @class = "control-label col-md-2" })
+                <label class="control-label col-md-2">备注</label>
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.Detail.Memo, new { htmlAttributes = new { @class = "form-control" } })
+                    <input id="Detail_Memo" type="text" class="form-control" />
                 </div>
             </div>
         </div>
@@ -266,7 +262,7 @@
 
 <script type="text/javascript">
     function addDetail() {
-        var selectClass = $("#SelectClass").find("option:selected").text();
+        var selectClass = $("#SelectClass").find("option:selected").text().trim();
         var metal = $("#Detail_Metal").val();
         var shape = $("#Detail_Shape").val();
         var model = $("#Detail_Model").val();
@@ -274,8 +270,6 @@
         var qty = $("#Detail_Qty").val();
         var memo = $("#Detail_Memo").val();
 
-        //var newrow = "<tr>" + "<td>" + selectClass + "</td><td>" + metal + "</td><td>" + shape + "</td><td>" + model +
-        //    "</td><td>" + technology + "</td><td>" + qty + "</td><td>" + memo + "</td></tr>";
 
         var rowCount = $("#QuotationDetails tr").length-1;
 
@@ -289,6 +283,8 @@
         newRow += "<td><input type='text' name='Details[" + rowCount + "].Qty' class='form-control' readonly='readonly' value='" + 0 + "' /></td>"
         newRow += "<td><input type='text' name='Details[" + rowCount + "].Memo' class='form-control' readonly='readonly' value='" + memo + "' /></td>"
         newRow += "</tr>"
+
+        
 
         $("#QuotationDetails tr:last").after(newRow);
 
